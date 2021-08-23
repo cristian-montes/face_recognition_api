@@ -1,8 +1,9 @@
 const express = require('express');
-
 const app = express();
 app.listen(3000);
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
 const dataBase = {
     users:[
         {
@@ -30,11 +31,9 @@ app.get('/', (req, res) =>{
 } );
 
 app.post('/signing', (req, res) => {
-    res.json('PLEASE SIGN IN MY FRIEND');
+    if(req.body.email === dataBase.users[0].email && req.body.password === dataBase.users[0].password){
+        res.json('success');
+    } else {
+        res.status(400).json('error logging in');
+    }
 })
-
-
-
-/*
-
-*/
