@@ -27,7 +27,7 @@ const dataBase = {
    
 
 app.get('/', (req, res) =>{
-    res.send('this is working my friend');
+    res.send(dataBase.users);
 } );
 
 app.post('/signing', (req, res) => {
@@ -36,4 +36,18 @@ app.post('/signing', (req, res) => {
     } else {
         res.status(400).json('error logging in');
     }
+})
+
+
+app.post('/register', (req, res) => {
+     const {email, name, password} = req.body;
+     dataBase.users.push({
+        id: '125',
+        name: name,
+        email: email,
+        password: password,
+        entries: 0,
+        joined: new Date()
+     })
+     res.json(dataBase.users[dataBase.users.length-1]);
 })
