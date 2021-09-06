@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const knex = require('knex');
 
-const postgres = knex({
+const db = knex({
     client: 'pg',
     connection: {
       host : '127.0.0.1',
@@ -17,7 +17,7 @@ const postgres = knex({
     }
   });
 
-postgres.select('*').from('users');
+db.select('*').from('users');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -58,13 +58,11 @@ app.post('/signin', (req, res) => {
 
 app.post('/register', (req, res) => {
      const {email, name, password} = req.body;
-     dataBase.users.push({
-        id: '125',
-        name: name,
+     db('users').insert({
         email: email,
-        entries: 0,
+        name: name,
         joined: new Date()
-     })
+     }).then(console.log)
      res.json(dataBase.users[dataBase.users.length-1]);
 })
 
