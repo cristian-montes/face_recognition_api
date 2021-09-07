@@ -23,8 +23,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) =>{
-    res.send(db.users);
+    res.send('sucess');
 } );
+
+
 
 app.post('/signin', (req, res) => {
    db.select('email', 'hash').from('login')
