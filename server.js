@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) =>{
-    res.send('sucess');
+    res.send('it is working');
 } );
 
 
