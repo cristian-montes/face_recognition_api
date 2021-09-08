@@ -8,7 +8,9 @@ const knex = require('knex');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
-const image = require('./controllers/image')
+const image = require('./controllers/image');
+const nodemon = require('nodemon');
+
 
 const db = knex({
     client: 'pg',
@@ -26,7 +28,7 @@ db.select('*').from('users');
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) =>{res.send('it is working')} );
+app.get('/', (req, res) => {res.send('it is working')} );
 
 app.post('/signin', (req, res) => { signin.handleSignin(req,res,db,bcrypt)})
 
