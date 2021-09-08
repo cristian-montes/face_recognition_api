@@ -15,11 +15,8 @@ const nodemon = require('nodemon');
 const db = knex({
     client: 'pg',
     connection: {
-      host : 'postgresql-shallow-27116',
-      port : 5432,
-      user : 'cristianmontes',
-      password : '',
-      database : 'face-recognition'
+      host : process.env.DATABASE_URL,
+      ssl: true,
     }
   });
 
